@@ -1,0 +1,73 @@
+.header {
+  width: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3.5em;
+  padding: 3em 5em;
+  font-weight: bold;
+  font-family: "Jaldi", sans-serif;
+  font-size: 1.15rem;
+}
+
+.header--find_mentor,
+.header--options,
+.header--user_login {
+  background-color: white;
+  padding: 0.25em 0.5em;
+  border-radius: 100px;
+  box-shadow: 0px 0 15px rgba(255, 255, 255, 0.8);
+	transition: all 0.15s;
+}
+
+.header--find_mentor:hover,
+.header--option:hover,
+.header--user_login:hover {
+	cursor: pointer;
+  background-color: black;
+	color: white;
+}
+
+.header--logo {
+  width: 5em;
+  height: 5em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header--logo {
+	cursor: pointer;
+}
+
+.header--logo img {
+	height: 100%;
+}
+
+.header--find_mentor {
+}
+
+.header--options {
+  display: flex;
+  /* justify-content: space-around; */
+  padding: 0;
+}
+
+.header--option {
+  padding: 0.25em 3em;
+	transition: all 0.15s;
+}
+
+.header--option:nth-child(1) {
+	border-radius: 100px 0 0 100px;
+}
+
+.header--option:nth-child(4) {
+	border-radius: 0 100px 100px 0;
+}
+
+.header--find_mentor,
+.header--user_login {
+  padding: 0.25em 2em;
+  text-transform: uppercase;
+}
