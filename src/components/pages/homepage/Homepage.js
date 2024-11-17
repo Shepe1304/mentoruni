@@ -10,7 +10,17 @@ const Homepage = () => {
         <img src={heroImage} alt="Mentorship University" />
       </div>
       <div className="homepage--recommendations">
-        <RecCard />
+        <div className="homepage--recommendations_background_upper">
+          <div>Testimonials</div>
+        </div>
+        <div className="homepage--recommendations_testimonial_space">
+          Testimonials
+        </div>
+        <div className="homepage--recommendations_container">
+          <RecCard />
+          <RecCard />
+          <RecCard />
+        </div>
       </div>
     </div>
   );
