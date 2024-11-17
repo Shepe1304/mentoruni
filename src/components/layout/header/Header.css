@@ -87,6 +87,14 @@
     padding: 0.5em;
   }
 
+  .header--option:nth-child(1) {
+    border-radius: 0;
+  }
+
+  .header--option:nth-child(4) {
+    border-radius: 0;
+  }
+
   .header--user_login {
     border-radius: 0;
     text-align: center;
@@ -100,7 +108,8 @@
   }
 
   .header--find_mentor span {
-    background-color: #12101d;
+    /* background-color: #12101d; */
+    background-color: black;
     padding: 0 0.5em;
   }
 

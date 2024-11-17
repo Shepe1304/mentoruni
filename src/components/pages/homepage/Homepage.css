@@ -1,3 +1,8 @@
+.homepage {
+  /* padding: 1em 0; */
+  padding-bottom: 1em;
+}
+
 .homepage--hero {
   background-color: #12101d;
   min-height: 10em;
@@ -9,8 +14,39 @@
 }
 
 .homepage--recommendations {
-  padding: 1.5em;
+  margin: 1em 2em;
+  background-color: #12101d;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0px 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.homepage--recommendations_background_upper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  border-radius: 10px;
+  background-color: #1f1c33;
+  /* z-index: -1; */
+}
+
+.homepage--recommendations_testimonial_space,
+.homepage--recommendations_background_upper div {
+  padding: 0.5em 0 0 0;
+  text-align: center;
+  color: white;
+  font-family: "Jaldi", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.homepage--recommendations_container {
+  padding: 1.5em 4.5em 3.75em 4.5em;
   display: flex;
+  justify-content: space-between;
+  z-index: 10;
 }
 
 @media (max-width: 850px) {
@@ -18,7 +54,9 @@
     padding: 3em 0;
   }
 
-  .homepage--recommendations {
+  .homepage--recommendations_container {
+    padding: 1.5em 1.5em 3.75em 1.5em;
     flex-direction: column;
+    gap: 1.5em;
   }
 }
