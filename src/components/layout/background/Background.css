@@ -9,3 +9,15 @@
   width: 100%;
   opacity: 0.4;
 }
+
+@media (max-width: 800px) {
+  .background {
+    top: 0;
+    bottom: 0;
+  }
+
+  .background img {
+    height: 100vh;
+    object-fit: cover;
+  } 
+}

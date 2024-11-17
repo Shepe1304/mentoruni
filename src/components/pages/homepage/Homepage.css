@@ -1,11 +1,15 @@
-.homepage {
-  background-color: #12101d;
-}
-
 .homepage--hero {
+  background-color: #12101d;
+  height: 10em;
   width: 100%;
 }
 
 .homepage--hero img {
   width: 100%;
+}
+
+@media (max-width: 800px) {
+  .homepage--hero {
+    padding: 2.5em 0;
+  }
 }

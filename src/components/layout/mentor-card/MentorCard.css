@@ -1,0 +1,12 @@
+.mentor_card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  width: 33%;
+  max-width: 20em;
+}
+
+.mentor_card--profile_picture {
+  border: 1px solid black;
+}
