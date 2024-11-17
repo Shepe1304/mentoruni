@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.css";
 import logo from "../../assets/img/Logo.png";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -13,6 +13,8 @@ const Header = () => {
   const HandleHomeClick = () => {
     navigate("/");
   };
+
+  const location = useLocation();  
 
   return (
     <header className="header">
@@ -33,9 +35,11 @@ const Header = () => {
         <div className="header--option">Contact</div>
         <div className="header--option">FAQ</div>
       </div>
-      <div className="header--user_login" onClick={HandleLoginClick}>
-        Log in
-      </div>
+      {!location.pathname.includes("login") ? (
+        <div className="header--user_login" onClick={HandleLoginClick}>
+          Log in
+        </div>
+      ) : null}
     </header>
   );
 };
