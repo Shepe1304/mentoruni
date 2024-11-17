@@ -6,7 +6,7 @@ const Background = () => {
   return (
     <div className="background">
       <div className="background--img">
-        <img src={schoolBackground} alt="" />
+        <img src={schoolBackground} alt="MentorUni - Mentorship University" />
       </div>
     </div>
   );

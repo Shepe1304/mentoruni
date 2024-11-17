@@ -1,11 +1,28 @@
 .background {
   position: fixed;
   top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-color: #12101d;
   z-index: -1;
 }
 
 .background img {
   width: 100%;
+  height: 100vh;
+  object-fit: cover;
   opacity: 0.4;
 }
+
+/* @media (max-width: 850px) {
+  .background {
+    top: 0;
+    bottom: 0;
+  }
+
+  .background img {
+    height: 100vh;
+    object-fit: cover;
+  }
+} */
