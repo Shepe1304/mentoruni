@@ -10,7 +10,7 @@ const Homepage = () => {
         <img src={heroImage} alt="Mentorship University" />
       </div>
       <div className="homepage--recommendations">
-        {/* <RecCard /> */}
+        <RecCard />
       </div>
     </div>
   );

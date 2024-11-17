@@ -1,6 +1,6 @@
 .homepage--hero {
   background-color: #12101d;
-  height: 10em;
+  min-height: 10em;
   width: 100%;
 }
 
@@ -8,8 +8,12 @@
   width: 100%;
 }
 
-@media (max-width: 800px) {
+.homepage--recommendations {
+
+}
+
+@media (max-width: 850px) {
   .homepage--hero {
-    padding: 2.5em 0;
+    padding: 4em 0;
   }
 }
