@@ -14,9 +14,16 @@ function UserProfile() {
   // State for user profile data
   const [userProfile, setUserProfile] = useState({
     name: "",
+    email: "", 
+    userId: "", 
     bio: "",
     skills: "",
     location: "",
+    country: "", 
+    current_school: "",
+    gpa: 4.0, //gpa as a number
+    role: "mentee", //Default role is "mentee"
+
   });
 
   // State for showing success/error messages
@@ -26,6 +33,13 @@ function UserProfile() {
   useEffect(() => {
     const fetchUserProfile = async () => {
       if (user) {
+        // Store email and userId in userProfile state
+        setUserProfile((prevUserProfile) => ({
+          ...prevUserProfile,
+          email: user.email,
+          userId: user.uid,
+        }));
+
         await getDocument(user.uid);
       }
     };
@@ -36,7 +50,7 @@ function UserProfile() {
   // Function to get a document
   const getDocument = async (userId) => {
     try {
-      const userDocRef = doc(db, "users", userId);
+      const userDocRef = doc(db, "User Collection", userId);
       const userDocSnap = await getDoc(userDocRef);
 
       if (userDocSnap.exists()) {
@@ -54,7 +68,7 @@ function UserProfile() {
   // Function to delete a document
   const deleteDocument = async (userId) => {
     try {
-      const userDocRef = doc(db, "users", userId);
+      const userDocRef = doc(db, "User Collection", userId);
       await deleteDoc(userDocRef);
       console.log("User deleted");
       setShowSuccessMessage(true);
@@ -73,7 +87,7 @@ function UserProfile() {
   // Function to update a document
   const updateDocument = async (userId, updatedData) => {
     try {
-      const userDocRef = doc(db, "users", userId);
+      const userDocRef = doc(db, "User Collection", userId);
       await updateDoc(userDocRef, updatedData);
       console.log("User updated");
       setShowSuccessMessage(true);
@@ -90,10 +104,18 @@ function UserProfile() {
   };
 
   const handleChange = (event) => {
-    setUserProfile({
-      ...userProfile,
-      [event.target.name]: event.target.value,
-    });
+    const { name, value, type } = event.target;
+    setUserProfile((prevUserProfile) => ({
+      ...prevUserProfile,
+      [name]: type === "number" ? Number(value) : value, // Parse GPA as Number
+    }));
+  };
+
+  const handleRoleChange = (event) => {
+    setUserProfile((prevUserProfile) => ({
+      ...prevUserProfile,
+      role: event.target.value,
+    }));
   };
 
   const handleSave = async () => {
@@ -136,12 +158,43 @@ function UserProfile() {
               onChange={handleChange}
             />
             <input
+
               type="text"
               name="location"
               placeholder="Location"
               value={userProfile.location}
               onChange={handleChange}
             />
+            <input
+
+              type="text"
+              name="country"
+              placeholder="Country"
+              value={userProfile.country}
+              onChange={handleChange}
+              />
+            <input
+              type="text"
+              name="current_school"
+              placeholder="Current School"
+              value={userProfile.current_school}
+              onChange={handleChange}
+            />
+            <input
+              type="number"
+              name="gpa"
+              placeholder="Gpa"
+              value={userProfile.gpa}
+              onChange={handleChange}
+              />
+            <div>
+            <label htmlFor="role">Role:</label>
+            <select id="role" name="role" value={userProfile.role} onChange={handleRoleChange}>
+              <option value="mentee">Mentee</option>
+              <option value="mentor">Mentor</option>
+            </select>
+          </div>
+        
             <button onClick={handleSave}>Update Profile</button>
           </div>
 
@@ -163,9 +216,15 @@ function UserProfile() {
           {/* Display user profile information */}
           <h3>Your Profile Information:</h3>
           <p>Name: {userProfile.name}</p>
+          <p>Email: {userProfile.email}</p> {/*Display email*/}
+          <p>User ID: {userProfile.userId}</p> {/*Display userId */}
           <p>Bio: {userProfile.bio}</p>
           <p>Skills: {userProfile.skills}</p>
           <p>Location: {userProfile.location}</p>
+          <p>Country: {userProfile.country}</p>
+          <p>Current School: {userProfile.current_school}</p>
+          <p>Gpa: {userProfile.gpa}</p>
+          <p>Role: {userProfile.gpa}</p>
         </div>
       )}
     </div>
