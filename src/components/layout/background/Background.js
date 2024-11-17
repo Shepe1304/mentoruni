@@ -1,6 +1,6 @@
 import React from "react";
 import "./Background.css";
-import schoolBackground from "../assets/img/Schoolback.png";
+import schoolBackground from "../../assets/img/Schoolback.png";
 
 const Background = () => {
   return (

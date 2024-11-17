@@ -1,7 +1,7 @@
 import "./App.css";
-import Background from "./components/layout/Background";
-import Header from "./components/layout/Header";
-import Homepage from "./components/pages/Homepage";
+import Background from "./components/layout/background/Background";
+import Header from "./components/layout/header/Header";
+import Homepage from "./components/pages/homepage/Homepage";
 
 function App() {
   return (
