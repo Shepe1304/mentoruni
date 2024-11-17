@@ -1,99 +1,125 @@
-import React, { useState, useEffect } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import { db, auth } from './firebase';   
-
+import { useState, useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { doc, getDoc, setDoc, addDoc, deleteDoc, updateDoc, collection } from "firebase/firestore";
+import { db, auth } from "./config/firebase";
 
 function UserProfile() {
   const [user, loading, error] = useAuthState(auth);
-  const [userData, setUserData] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedData, setEditedData] = useState({   
 
-    name: '',
-    bio: '',
-    skills: [],
-    location: '',
-    profilePictureUrl: '',
+  // State for user profile data
+  const [userProfile, setUserProfile] = useState({
+    name: "",
+    bio: "",
+    skills: "",
+    location: "",
   });
 
-  useEffect(() => {
-    if (user) {
-      const fetchUserData = async () => {
-        try {
-          const userDocRef = doc(db, 'User Collection', user.uid); // Use correct collection name
-          const userDocSnap = await getDoc(userDocRef);
-          if (userDocSnap.exists()) {
-            setUserData(userDocSnap.data());
-            setEditedData(userDocSnap.data());
-          }
-        } catch (error) {
-          console.error('Error fetching user data:', error);
-        }
-      };
-      fetchUserData();
-    }
-  }, [user]);
+  // State for showing success/error messages
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-  const handleUpdate = async (event) => {
-    event.preventDefault();
+  // Get a reference to the "users" collection
+  const usersCollectionRef = collection(db, "users");
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (user) {
+        await getDocument(user.uid); // Fetch user document on component load
+      }
+    };
+
+    fetchUserProfile();
+  }, [user]); // Re-run when the user changes (login/logout)
+
+  // Function to get a document
+  const getDocument = async (userId) => {
     try {
-      await updateDoc(doc(db, 'User Collection', user.uid), editedData); // Use correct collection name
-      setIsEditing(false);
+      const userDocRef = doc(db, "users", userId);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (userDocSnap.exists()) {
+        setUserProfile(userDocSnap.data());
+      }
     } catch (error) {
-      console.error('Error updating user profile:', error);
+      console.error("Error fetching user profile:", error);
+      setShowErrorMessage(true);
+      setTimeout(() => {
+        setShowErrorMessage(false);
+      }, 3000);
+    }
+  };
+
+  // Function to add a document
+  const addDocument = async (newUserData) => {
+    try {
+      await addDoc(usersCollectionRef, newUserData);
+      console.log("New user added");
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Error adding user:", error);
+      setShowErrorMessage(true);
+      setTimeout(() => {
+        setShowErrorMessage(false);
+      }, 3000);
+    }
+  };
+
+  // Function to delete a document
+  const deleteDocument = async (userId) => {
+    try {
+      const userDocRef = doc(db, "users", userId);
+      await deleteDoc(userDocRef);
+      console.log("User deleted");
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      setShowErrorMessage(true);
+      setTimeout(() => {
+        setShowErrorMessage(false);
+      }, 3000);
+    }
+  };
+
+  // Function to update a document
+  const updateDocument = async (userId, updatedData) => {
+    try {
+      const userDocRef = doc(db, "users", userId);
+      await updateDoc(userDocRef, updatedData);
+      console.log("User updated");
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Error updating user:", error);
+      setShowErrorMessage(true);
+      setTimeout(() => {
+        setShowErrorMessage(false);
+      }, 3000);
     }
   };
 
   const handleChange = (event) => {
-    setEditedData({ ...editedData, [event.target.name]: event.target.value });
+    setUserProfile({
+      ...userProfile,
+      [event.target.name]: event.target.value,
+    });
   };
 
-  const handleSkillChange = (index, value) => {
-    setEditedData(prevData => ({
-      ...prevData,
-      skills: prevData.skills.map((skill, i) => (i === index ? value : skill)),
-    }));
+  const handleSave = async () => {
+    if (user) {
+      await updateDocument(user.uid, userProfile); // Update existing user document
+    }
   };
-
-  if (loading) return <p>Loading user profile...</p>;
-  if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div>
-      {user ? (
-        <div>
-          <h2>User Profile</h2>
-          {userData?.profilePictureUrl && (
-            <img
-              src={userData.profilePictureUrl}
-              alt="Profile"
-              style={{ width: '100px', height: '100px' }}
-            />
-          )}
-          <p>Name: {userData?.name}</p>
-          <p>Email: {user.email}</p>
-          <p>Bio: {userData?.bio}</p>
-          <p>Skills: {userData?.skills?.join(', ')}</p>
-          <p>Location: {userData?.location}</p>
-          {userData?.lastLogin && (
-            <p>Last Login: {userData.lastLogin.toDate().toLocaleString()}</p>
-          )}
-          <p>Role: {userData?.role}</p>
-
-          {isEditing ? (
-            <form onSubmit={handleUpdate}>
-              {/* ... form inputs ... */}
-              <button type="submit">Save</button>
-            </form>
-          ) : (
-            <button onClick={() => setIsEditing(true)}>Edit Profile</button>
-          )}
-        </div>
-      ) : (
-        <p>You need to log in to see your profile.</p>
-      )}
-    </div>
+    // ... your JSX ...
   );
 }
 
