@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Login.css";
 
 const Login = () => {
-  return <div className="login">Login</div>;
+  return <div className="login">
+    Login
+  </div>;
 };
 
 export default Login;
