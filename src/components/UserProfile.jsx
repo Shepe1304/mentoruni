@@ -7,7 +7,7 @@ function UserProfile() {
   const [user, loading, error] = useAuthState(auth);
   const [userData, setUserData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [editedData, setEditedData] = useState({   
+  const [editedData, setEditedData] = useState({  
 
     name: '',
     bio: '',
