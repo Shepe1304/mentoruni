@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { doc, getDoc, setDoc, addDoc, deleteDoc, updateDoc, collection } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  deleteDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { db, auth } from "./config/firebase";
 
 function UserProfile() {
@@ -18,18 +23,15 @@ function UserProfile() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-  // Get a reference to the "users" collection
-  const usersCollectionRef = collection(db, "users");
-
   useEffect(() => {
     const fetchUserProfile = async () => {
       if (user) {
-        await getDocument(user.uid); // Fetch user document on component load
+        await getDocument(user.uid);
       }
     };
 
     fetchUserProfile();
-  }, [user]); // Re-run when the user changes (login/logout)
+  }, [user]);
 
   // Function to get a document
   const getDocument = async (userId) => {
@@ -42,24 +44,6 @@ function UserProfile() {
       }
     } catch (error) {
       console.error("Error fetching user profile:", error);
-      setShowErrorMessage(true);
-      setTimeout(() => {
-        setShowErrorMessage(false);
-      }, 3000);
-    }
-  };
-
-  // Function to add a document
-  const addDocument = async (newUserData) => {
-    try {
-      await addDoc(usersCollectionRef, newUserData);
-      console.log("New user added");
-      setShowSuccessMessage(true);
-      setTimeout(() => {
-        setShowSuccessMessage(false);
-      }, 3000);
-    } catch (error) {
-      console.error("Error adding user:", error);
       setShowErrorMessage(true);
       setTimeout(() => {
         setShowErrorMessage(false);
@@ -114,12 +98,77 @@ function UserProfile() {
 
   const handleSave = async () => {
     if (user) {
-      await updateDocument(user.uid, userProfile); // Update existing user document
+      await updateDocument(user.uid, userProfile);
     }
   };
 
   return (
-    // ... your JSX ...
+    <div className="user-profile">
+      {/* Conditionally render loading or error messages */}
+      {loading && <p>Loading user profile...</p>}
+      {error && <p>Error: {error.message}</p>}
+
+      {/* Render the form if user is logged in */}
+      {user && (
+        <div>
+          <h2>User Profile</h2>
+
+          {/* Form for updating the current user's profile */}
+          <div>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={userProfile.name}
+              onChange={handleChange}
+            />
+            <textarea
+              name="bio"
+              placeholder="Bio"
+              value={userProfile.bio}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="skills"
+              placeholder="Skills"
+              value={userProfile.skills}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="location"
+              placeholder="Location"
+              value={userProfile.location}
+              onChange={handleChange}
+            />
+            <button onClick={handleSave}>Update Profile</button>
+          </div>
+
+          {/* Button to delete the current user's document */}
+          <button onClick={() => deleteDocument(user.uid)}>
+            Delete Profile
+          </button>
+
+          {/* Display success/error messages */}
+          {showSuccessMessage && (
+            <div className="success-message">Operation successful!</div>
+          )}
+          {showErrorMessage && (
+            <div className="error-message">
+              An error occurred. Please try again.
+            </div>
+          )}
+
+          {/* Display user profile information */}
+          <h3>Your Profile Information:</h3>
+          <p>Name: {userProfile.name}</p>
+          <p>Bio: {userProfile.bio}</p>
+          <p>Skills: {userProfile.skills}</p>
+          <p>Location: {userProfile.location}</p>
+        </div>
+      )}
+    </div>
   );
 }
 
