@@ -194,7 +194,27 @@ function UserProfile() {
               <option value="mentor">Mentor</option>
             </select>
           </div>
-        
+
+          {/* Conditional Fields for Mentors */}
+          {userProfile.role === "mentor" && (
+              <div>
+                <input
+                  type="text"
+                  name="time_availability"
+                  placeholder="Time Availability"
+                  value={userProfile.time_availability}
+                  onChange={handleChange}
+                />
+                <input
+                  type="number"
+                  name="price"
+                  placeholder="Price"
+                  value={userProfile.price}
+                  onChange={handleChange}
+                />
+              </div>
+            )}
+
             <button onClick={handleSave}>Update Profile</button>
           </div>
 
@@ -224,7 +244,7 @@ function UserProfile() {
           <p>Country: {userProfile.country}</p>
           <p>Current School: {userProfile.current_school}</p>
           <p>Gpa: {userProfile.gpa}</p>
-          <p>Role: {userProfile.gpa}</p>
+          <p>Role: {userProfile.role}</p>
         </div>
       )}
     </div>
