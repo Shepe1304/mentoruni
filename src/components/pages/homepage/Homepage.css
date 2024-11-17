@@ -9,11 +9,16 @@
 }
 
 .homepage--recommendations {
-
+  padding: 1.5em;
+  display: flex;
 }
 
 @media (max-width: 850px) {
   .homepage--hero {
-    padding: 4em 0;
+    padding: 3em 0;
+  }
+
+  .homepage--recommendations {
+    flex-direction: column;
   }
 }
