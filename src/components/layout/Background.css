@@ -1,0 +1,11 @@
+.background {
+  position: fixed;
+  top: 0;
+  background-color: #12101d;
+  z-index: -1;
+}
+
+.background img {
+  width: 100%;
+  opacity: 0.4;
+}
