@@ -9,7 +9,9 @@ import About from "./about/about"
 const Homepage = () => {
   return (
     <div className="homepage">
-      <img src={heroImage} alt="Mentorship University" />
+      <div className="mentoruni">
+        <img src={heroImage} alt="Mentorship University"  />
+      </div>
       <About  />
       <Contact />
       <FAQs />
