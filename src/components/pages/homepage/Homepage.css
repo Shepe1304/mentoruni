@@ -2,7 +2,11 @@
   /* padding: 1em 0; */
   padding-bottom: 1em;
 }
-
+.homepage img{
+  
+  margin-top: 10px;
+  width: 100%;
+}
 .homepage--hero {
   background-color: #12101d;
   min-height: 10em;

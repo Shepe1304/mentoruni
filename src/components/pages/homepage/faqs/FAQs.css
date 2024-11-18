@@ -3,12 +3,17 @@
   margin: 30px auto; /* Increased margin for better spacing */
   padding: 20px;
   border-radius: 10px; /* Added rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added a subtle shadow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add box shadow */
   align-items: center;
-  background: linear-gradient(to top, #e8d10c, #fff175);
+  background: linear-gradient(
+    180deg,
+    rgba(34, 89, 235, 0.8) 23.5%,
+    rgba(68, 114, 237, 0.8) 57%,
+    rgba(110, 150, 255, 0.8) 100%);
   font-weight: bold;
   font-family: "Jaldi", sans-serif;
   font-size: 1.15rem;
+
 }
 
 .faq-list {
@@ -28,7 +33,7 @@
 }
 
 .faq-item:hover {
-  background-color: #fff069; /* Light gray background on hover */
+  background-color: #8faaf5; /* Light gray background on hover */
   opacity: 80%;
 }
 
@@ -75,6 +80,7 @@
   
   border-radius: 10px;
   justify-content: center;
+  color: white;
 }
 
 .introduction img{

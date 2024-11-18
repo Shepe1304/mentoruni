@@ -1,15 +1,19 @@
 import React from "react";
 import "./Homepage.css";
-import heroImage from "../../assets/img/homepageHeroLogo.png";
+import heroImage from "../../assets/img/mentoruni.png";
 import RecCard from "../../layout/recommendation-card/RecCard";
 import Contact from "./contact/Contact";
 import FAQs from "./faqs/FAQs";
+import About from "./about/about"
 
 const Homepage = () => {
   return (
     <div className="homepage">
+      <img src={heroImage} alt="Mentorship University" />
+      <About  />
       <Contact />
       <FAQs />
+      
       {/* <div className="homepage--hero">
         <img src={heroImage} alt="Mentorship University" />
       </div>
