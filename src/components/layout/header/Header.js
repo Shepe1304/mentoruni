@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import logo from "../../assets/img/Logo.png";
+import logo from "../../assets/img/logo_blue.png";
 import { useLocation, useNavigate } from "react-router";
 
 const Header = () => {
@@ -14,7 +14,7 @@ const Header = () => {
     navigate("/");
   };
 
-  const location = useLocation();  
+  const location = useLocation();
 
   return (
     <header className="header">
@@ -24,10 +24,8 @@ const Header = () => {
           alt="Logo, a smiling globe with university hat and bull horns, and the text 'MentorUni' around it."
         />
       </div>
-      <div className="header--find_mentor">
-        <span>Find Mentor</span>
-      </div>
-      <div className="header--options">
+      <div className="header--find_mentor dark-shadow">Find Mentor</div>
+      <div className="header--options dark-shadow">
         <div className="header--option" onClick={HandleHomeClick}>
           Home
         </div>
@@ -36,7 +34,10 @@ const Header = () => {
         <div className="header--option">FAQ</div>
       </div>
       {!location.pathname.includes("login") ? (
-        <div className="header--user_login" onClick={HandleLoginClick}>
+        <div
+          className="header--user_login dark-shadow"
+          onClick={HandleLoginClick}
+        >
           Log in
         </div>
       ) : null}

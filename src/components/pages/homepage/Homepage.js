@@ -2,11 +2,13 @@ import React from "react";
 import "./Homepage.css";
 import heroImage from "../../assets/img/homepageHeroLogo.png";
 import RecCard from "../../layout/recommendation-card/RecCard";
+import Contact from "./contact/Contact";
 
 const Homepage = () => {
   return (
     <div className="homepage">
-      <div className="homepage--hero">
+      <Contact />
+      {/* <div className="homepage--hero">
         <img src={heroImage} alt="Mentorship University" />
       </div>
       <div className="homepage--recommendations">
@@ -21,7 +23,7 @@ const Homepage = () => {
           <RecCard />
           <RecCard />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
