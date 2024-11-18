@@ -3,11 +3,13 @@ import "./Homepage.css";
 import heroImage from "../../assets/img/homepageHeroLogo.png";
 import RecCard from "../../layout/recommendation-card/RecCard";
 import Contact from "./contact/Contact";
+import FAQs from "../faqs/FAQs";
 
 const Homepage = () => {
   return (
     <div className="homepage">
       <Contact />
+      <FAQs />
       {/* <div className="homepage--hero">
         <img src={heroImage} alt="Mentorship University" />
       </div>
