@@ -1,0 +1,44 @@
+.contact {
+  font-family: "Jaldi", sans-serif;
+  padding: 2em 0;
+  width: 100%;
+}
+
+.contact--headline {
+  text-transform: uppercase;
+  font-size: 3rem;
+}
+
+.contact--sub_headline {
+  font-size: 1.75rem;
+}
+
+.contact--headline,
+.contact--sub_headline {
+  text-align: center;
+  font-weight: bold;
+  background: linear-gradient(
+    180deg,
+    rgba(34, 89, 235, 0.8) 23.5%,
+    rgba(68, 114, 237, 0.8) 57%,
+    rgba(110, 150, 255, 0.8) 100%
+  );
+  color: transparent;
+  background-clip: text;
+}
+
+.contact--nav_cards {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 6em;
+  padding-bottom: 4em;
+}
+
+@media (max-width: 850px) {
+  .contact--nav_cards {
+    padding: 2em 4em;
+    flex-direction: column;
+    gap: 1.5em;
+  }
+}

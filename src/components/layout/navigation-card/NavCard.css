@@ -1,0 +1,64 @@
+.nav_card {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+    align-items: center;
+  gap: 1em;
+  /* align-items: center; */
+  background: linear-gradient(
+    180deg,
+    rgba(34, 89, 235, 0.8) 23.5%,
+    rgba(68, 114, 237, 0.8) 57%,
+    rgba(110, 150, 255, 0.8) 100%
+  );
+  color: white;
+  min-height: 250px;
+  padding: 4em 2.5em 3em 2.5em;
+  position: relative;
+  border-radius: 10px;
+}
+
+.nav_card_binder {
+  background-color: white;
+  width: 100%;
+  height: 1em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-radius: 10px 10px 0 0;
+}
+
+.nav_card--headline {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.nav_card--button {
+  border: none;
+  color: white;
+  padding: 0.5em 2em;
+  background: linear-gradient(0deg, rgba(34, 89, 235, 0.8), rgba(34, 89, 235, 0.8));
+  border-radius: 100px;
+  border: 1px solid white;
+}
+
+.move-up {
+  margin-top: -3em;
+  margin-bottom: 3em;
+}
+
+@media (max-width: 850px) {
+  .nav_card {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+
+  .nav_card--button {
+    padding: 0.5em 3em;
+    max-width: 15em;
+  }
+}
