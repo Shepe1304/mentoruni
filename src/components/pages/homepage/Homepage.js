@@ -3,7 +3,7 @@ import "./Homepage.css";
 import heroImage from "../../assets/img/homepageHeroLogo.png";
 import RecCard from "../../layout/recommendation-card/RecCard";
 import Contact from "./contact/Contact";
-import FAQs from "../faqs/FAQs";
+import FAQs from "./faqs/FAQs";
 
 const Homepage = () => {
   return (

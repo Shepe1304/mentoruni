@@ -4,7 +4,7 @@ import Background from "./components/layout/background/Background";
 import Header from "./components/layout/header/Header";
 import Homepage from "./components/pages/homepage/Homepage";
 import Login from "./components/pages/login/Login";
-import FAQs from "./components/pages/faqs/FAQs";
+import FAQs from "./components/pages/homepage/faqs/FAQs";
 
 function App() {
   return (
