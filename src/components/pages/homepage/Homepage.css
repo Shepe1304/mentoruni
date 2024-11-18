@@ -64,3 +64,22 @@
     gap: 1.5em;
   }
 }
+
+.mentoruni {
+  background-color: #f4f5f9;
+}
+.mentoruni img{ 
+  animation: move-left-right 4s ease-in-out infinite; 
+}
+
+@keyframes move-left-right {
+  0% {
+    transform: translateX(0); /* Start at original position */
+  }
+  50% {
+    transform: translateX(20px); /* Move 20px to the right */
+  }
+  100% {
+    transform: translateX(0); /* Return to original position */
+  }
+}
