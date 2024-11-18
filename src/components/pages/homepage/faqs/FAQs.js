@@ -2,7 +2,7 @@
 import React, { useState } from 'react'; // Import useState from React
 import './FAQs.css'; 
 // import "./FAQs.css";
-import FAQsimage from "../../assets/img/FAQs image.png";
+import FAQsimage from "../../../assets/img/FAQs image.png";
 
 
 
