@@ -69,6 +69,7 @@
   background-color: #f4f5f9;
 }
 .mentoruni img{ 
+  width: 95%;
   animation: move-left-right 4s ease-in-out infinite; 
 }
 
