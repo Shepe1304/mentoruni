@@ -118,7 +118,8 @@
   }
 
   .header--option {
-    padding: 0 2em;
+    /* padding: 0 2em; */
+    padding: 0;
     transition: all 0.15s;
   }
 }

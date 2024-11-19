@@ -1,4 +1,4 @@
-.faq-container {
+.faq--container {
   width: 80%;
   margin: 30px auto; /* Increased margin for better spacing */
   padding: 20px;
@@ -9,35 +9,35 @@
     180deg,
     rgba(34, 89, 235, 0.8) 23.5%,
     rgba(68, 114, 237, 0.8) 57%,
-    rgba(110, 150, 255, 0.8) 100%);
+    rgba(110, 150, 255, 0.8) 100%
+  );
   font-weight: bold;
   font-family: "Jaldi", sans-serif;
   font-size: 1.15rem;
-
 }
 
-.faq-list {
+.faq--list {
   list-style: none;
   padding: 0;
   background-color: white;
   justify-content: center;
   padding: 10px;
-  
+  border-radius: 10px;
 }
 
-.faq-item {
+.faq--item {
   border-bottom: 1px solid white;
   margin-bottom: 10px;
   transition: background-color 0.3s ease; /* Added background transition */
   padding: 10px;
 }
 
-.faq-item:hover {
+.faq--item:hover {
   background-color: #8faaf5; /* Light gray background on hover */
   opacity: 80%;
 }
 
-.faq-question {
+.faq--question {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,12 +45,12 @@
   padding: 15px 0; /* Added padding for better spacing */
 }
 
-.faq-question h3 {
+.faq--question h3 {
   margin: 0;
   font-weight: 500; /* Slightly bolder question text */
 }
 
-.faq-icon {
+.faq--icon {
   font-size: 24px; /* Increased icon size */
   font-weight: bold;
   transition: transform 0.3s ease; /* Added icon rotation transition */
@@ -59,36 +59,57 @@
 /* .faq-item.active .faq-icon {
   transform: rotate(45deg); /* Rotate icon when active */
 
-
-.faq-answer {
+.faq--answer {
   padding: 10px 0 15px 0; /* Adjusted padding for better spacing */
   overflow: hidden; /* Hide answer overflow during transition */
-  max-height: 0; /* Initially collapse the answer */
   transition: max-height 0.3s ease; /* Added smooth height transition */
 }
 
-.faq-item.active .faq-answer {
-  max-height: 200px; /* Set a max-height for the answer when open */
+.faq--item.active .faq-answer {
+  max-height: 300px; /* Set a max-height for the answer when open */
+  overflow-y: auto;
 }
 
-
-.introduction {
+.faq--introduction {
   display: flex;
   align-items: center;
   width: 100%;
   min-height: 10em;
-  
+
   border-radius: 10px;
   justify-content: center;
   color: white;
 }
 
-.introduction img{
+.faq--introduction img {
   width: 30%;
   margin-right: 20px;
   margin-left: 100px;
 }
 
-.introduction p{
-  width:70%;
+.faq--introduction p {
+  width: 70%;
+}
+
+@media (max-width: 850px) {
+  .faq--introduction {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .faq--introduction img {
+    margin: 0;
+  }
+
+  .faq--introduction h2,
+  .faq--introduction p {
+    width: 100%;
+    text-align: center;
+  }
+
+  .faq--introduction p {
+    font-weight: normal;
+    margin: 1em 0;
+  }
 }

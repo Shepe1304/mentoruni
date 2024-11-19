@@ -37,7 +37,7 @@
 
 @media (max-width: 850px) {
   .contact--nav_cards {
-    padding: 2em 4em;
+    padding: 2em;
     flex-direction: column;
     gap: 1.5em;
   }
