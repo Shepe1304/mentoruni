@@ -6,12 +6,6 @@
   align-items: center;
   gap: 1em;
   /* align-items: center; */
-  background: linear-gradient(
-    180deg,
-    rgba(34, 89, 235, 0.8) 23.5%,
-    rgba(68, 114, 237, 0.8) 57%,
-    rgba(110, 150, 255, 0.8) 100%
-  );
   color: white;
   min-height: 250px;
   padding: 4em 2.5em 3em 2.5em;
@@ -54,6 +48,45 @@
 .move-up {
   margin-top: -3em;
   margin-bottom: 3em;
+}
+
+.blue-background {
+  background: linear-gradient(
+    180deg,
+    rgba(34, 89, 235, 0.8) 23.5%,
+    rgba(68, 114, 237, 0.8) 57%,
+    rgba(110, 150, 255, 0.8) 100%
+  );
+}
+
+.pink-background {
+  background: linear-gradient(
+    180deg,
+    rgba(230, 114, 220, 0.8) 19.97%,
+    rgba(239, 167, 233, 0.8) 66.69%,
+    rgba(249, 201, 245, 0.8) 100%
+  );
+}
+
+.yellow-background {
+  background: linear-gradient(
+    180deg,
+    rgba(232, 209, 12, 0.8) 0%,
+    rgba(244, 225, 61, 0.8) 43%,
+    rgba(255, 241, 117, 0.8) 100%
+  );
+}
+
+.button-blue-background {
+  background: rgba(34, 89, 235, 0.8);
+}
+
+.button-pink-background {
+  background: rgba(230, 114, 220, 0.8);
+}
+
+.button-yellow-background {
+  background: rgba(232, 209, 12, 0.8);
 }
 
 @media (max-width: 850px) {
