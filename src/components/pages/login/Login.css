@@ -74,3 +74,9 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+@media (max-width: 850px) {
+  .login {
+    width: 80%;
+  }
+}
