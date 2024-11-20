@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./FindMentors.css";
+import magnifier from "../../assets/img/magnifier.png";
+import MentorCard from "../../layout/mentor-card/MentorCard";
+import { mentorList } from "../../assets/data-lists/MentorList";
 
 const FindMentors = () => {
   const [country, setCountry] = useState("");
@@ -18,7 +21,7 @@ const FindMentors = () => {
         <div className="find_mentors--filter_bar--searchbar">
           <div className="find_mentors--filter_bar--searchbar_icon_container">
             <img
-              src=""
+              src={magnifier}
               alt="Magnifier icon"
               className="find_mentors--filter_bar--searchbar_icon"
             />
@@ -62,6 +65,9 @@ const FindMentors = () => {
               </option>
               <option value="Harvard University">Harvard University</option>
               <option value="Duke University">Duke University</option>
+              <option value="Duke University">
+                University of Saint Thomas
+              </option>
             </select>
           </div>
           <div className="find_mentors--filter_option">
@@ -74,10 +80,11 @@ const FindMentors = () => {
               }}
             >
               <option value="choose">Choose Rating Range</option>
-              <option value="4-5">4 - 5</option>
-              <option value="3-4">3 - 4</option>
-              <option value="2-3">2 - 3</option>
-              <option value="1-2">1 - 2</option>
+              <option value="4-5">4.1 - 5</option>
+              <option value="3-4">3.1 - 4</option>
+              <option value="2-3">2.1 - 3</option>
+              <option value="1-2">1.1 - 2</option>
+              <option value="1-2">0.1 - 1</option>
             </select>
           </div>
           <div className="find_mentors--filter_option">
@@ -99,7 +106,21 @@ const FindMentors = () => {
           </div>
         </div>
       </aside>
-      <div className="find_mentors--mentor_list">MENTORS</div>
+
+      <div className="find_mentors--mentor_list">
+        {mentorList.map((mentor) => (
+          <MentorCard
+            name={mentor.name}
+            country={mentor.country}
+            school={mentor.school}
+            skills={mentor.skills}
+            gpa={mentor.gpa}
+            rating={mentor.rating}
+            price={mentor.price}
+            img={mentor.img}
+          />
+        ))}
+      </div>
     </div>
   );
 };

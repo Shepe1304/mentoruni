@@ -1,0 +1,36 @@
+ICPC: Codeforces, Codeforces->Education->Pilot 
+
+LEARN ALL BASICS OF LEETCODE
+LeetCode: Learn Topic by Topic
+
+Challenge: Beginner and Advanced Courses 
+- coi qua content
+- lam het
+- hoc tat ca ve giai thuat
+
+- Monotonous Stack
+- Leet Grind
+
+- LeetCode Explore Learn
+- OOP
+
+JavaScript: Vanilla website 
+OOP of JavaScript/ES6 pictures (let, var, constant, prototype, inheritance, ASYNCHRONOUS PROGRAMMING)
+Lift State up (Dua state ve parents)
+Component Life Cycle => 3 giai doan: Mounting, Operating (?), Deleting => Lquan toi cai dependencies
+
+Hoc them Hooks
+UseRest, UseCallback, UseMemo, UseContext, UseRe[]ser
+Custom Hooks
+
+CSS
+
+How To Build TypeScript
+
+Node.js => Asynchronous programming
+Firebase chua du lam backend
+
+Asynchronous programming & OOP w/ JavaScript
+JavaScript ES6 pictures
+
+WRITE DIARYYYYYYY
