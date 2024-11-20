@@ -1,14 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getFirestore } from "firebase/firestore"; // Import Firestore from the modular SDK
+import { getAuth, GoogleAuthProvider } from "firebase/auth"; // Import Auth and GoogleAuthProvider
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCAtMBkqH7COZLQOBCWLba-_gQs9T8sSiA",
   authDomain: "mentor-uni.firebaseapp.com",
@@ -17,10 +13,11 @@ const firebaseConfig = {
   messagingSenderId: "558616481791",
   appId: "1:558616481791:web:2150b5866322e2126961ca",
   measurementId: "G-3NPKYB1TKE",
-  
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-export const db = firebase.firestore();
+export const db = getFirestore(app); // Initialize Firestore
+export const auth = getAuth(app); // Initialize Auth
+export const googleProvider = new GoogleAuthProvider(); // Initialize Google Auth Provider
