@@ -4,7 +4,7 @@ import Background from "./components/layout/background/Background";
 import Header from "./components/layout/header/Header";
 import Homepage from "./components/pages/homepage/Homepage";
 import Login from "./components/pages/login/Login";
-import FAQs from "./components/pages/homepage/faqs/FAQs";
+import FindMentors from "./components/pages/find-mentors/FindMentors";
 
 function App() {
   return (
@@ -12,13 +12,14 @@ function App() {
       {/* <Background />
       <Header />
       <FAQs /> */}
-      
+
       <Background />
       <Header />
-    
+
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/find-mentors" element={<FindMentors />} />
       </Routes>
     </div>
   );

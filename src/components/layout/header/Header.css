@@ -50,9 +50,15 @@
   padding: 0;
 }
 
+.header a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .header--option {
   padding: 0.25em 3em;
   transition: all 0.15s;
+  border-radius: none;
 }
 
 .header--option:nth-child(1) {
@@ -70,7 +76,6 @@
 }
 
 @media (max-width: 850px) {
-
   .header {
     height: auto;
     padding: 0;

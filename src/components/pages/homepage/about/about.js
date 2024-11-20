@@ -6,7 +6,7 @@ import About3 from "../../../assets/img/about3.jpg";
 
 function About() {
   return (
-    <div className="about--container">
+    <div className="about--container" id="about">
       <div className="about--intro_section">
         {" "}
         {/* Introduction section */}
@@ -17,7 +17,7 @@ function About() {
           succeeded in their own college applications. We prioritize
           affordability and personalized guidance to make quality mentorship
           accessible to everyone. Our platform empowers students to reach their
-          dream colleges with confidence and suppor
+          dream colleges with confidence and support.
         </p>
       </div>
       <div className="about--items">

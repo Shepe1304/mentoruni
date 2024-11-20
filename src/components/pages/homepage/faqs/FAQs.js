@@ -39,7 +39,7 @@ function FAQs() {
   };
 
   return (
-    <div className="faq--container">
+    <div className="faq--container" id="faq">
       <div className="faq--introduction">
         <img src={FAQsimage} alt="Image" className="FAQsiamge" />
         <div className="faq--intro_text">
