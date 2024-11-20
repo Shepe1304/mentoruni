@@ -1,0 +1,15 @@
+.find_mentors {
+  display: flex;
+  font-family: "Jaldi", sans-serif;
+}
+
+.find_mentors--filter_bar {
+  background-color: orange;
+  width: 30%;
+}
+
+.find_mentors--mentor_list {
+  background-color: darkcyan;
+  width: 70%;
+}
+
