@@ -6,12 +6,16 @@ import { useLocation, useNavigate } from "react-router";
 const Header = () => {
   const navigate = useNavigate();
 
-  const HandleLoginClick = () => {
-    navigate("/login");
+  const HandleFindMentorsClick = () => {
+    navigate("/find-mentors");
   };
 
   const HandleHomeClick = () => {
     navigate("/");
+  };
+
+  const HandleLoginClick = () => {
+    navigate("/login");
   };
 
   const location = useLocation();
@@ -24,22 +28,35 @@ const Header = () => {
           alt="Logo, a smiling globe with university hat and bull horns, and the text 'MentorUni' around it."
         />
       </div>
-      <div className="header--find_mentor dark-shadow">Find Mentor</div>
-      <div className="header--options dark-shadow">
-        <div className="header--option" onClick={HandleHomeClick}>
-          Home
-        </div>
-        <div className="header--option">About</div>
-        <div className="header--option">Contact</div>
-        <div className="header--option">FAQ</div>
+      <div
+        className="header--find_mentor dark-shadow"
+        onClick={HandleFindMentorsClick}
+      >
+        Find Mentor
       </div>
-      {!location.pathname.includes("login") ? (
-        <div
-          className="header--user_login dark-shadow"
-          onClick={HandleLoginClick}
-        >
-          Log in
-        </div>
+      {!(location.pathname == "/login") ? (
+        <>
+          <div className="header--options dark-shadow">
+            <div className="header--option" onClick={HandleHomeClick}>
+              Home
+            </div>
+            <a href="#about" className="header--option">
+              <div className="header--option_text">About</div>
+            </a>
+            <a href="#contact" className="header--option">
+              <div className="header--option_text">Contact</div>
+            </a>
+            <a href="#faq" className="header--option">
+              <div className="header--option_text">FAQ</div>
+            </a>
+          </div>
+          <div
+            className="header--user_login dark-shadow"
+            onClick={HandleLoginClick}
+          >
+            Log in
+          </div>
+        </>
       ) : null}
     </header>
   );
