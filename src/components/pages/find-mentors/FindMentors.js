@@ -9,9 +9,44 @@ const FindMentors = () => {
   const [school, setSchool] = useState("");
   const [rating, setRating] = useState("");
   const [price, setPrice] = useState("");
+  const [filteredMentorList, setFilteredMentorList] = useState([]);
 
   useEffect(() => {
-    console.log(price);
+    setFilteredMentorList(mentorList);
+  }, []);
+
+  useEffect(() => {
+    const filteredMentorsByRating = mentorList.filter((mentor) => {
+      if (rating == "1") {
+        return mentor.rating >= 1 && mentor.rating <= 10;
+      } else if (rating == "2") {
+        return mentor.rating >= 11 && mentor.rating <= 20;
+      } else if (rating == "3") {
+        return mentor.rating >= 21 && mentor.rating <= 30;
+      } else if (rating == "4") {
+        return mentor.rating >= 31 && mentor.rating <= 40;
+      } else if (rating == "5") {
+        return mentor.rating >= 41 && mentor.rating <= 50;
+      }
+    });
+    setFilteredMentorList(filteredMentorsByRating);
+  }, [rating]);
+
+  useEffect(() => {
+    const filteredMentorsByPrice = mentorList.filter((mentor) => {
+      if (price == "1") {
+        return mentor.price >= 1 && mentor.price <= 10;
+      } else if (price == "2") {
+        return mentor.price >= 11 && mentor.price <= 20;
+      } else if (price == "3") {
+        return mentor.price >= 21 && mentor.price <= 30;
+      } else if (price == "4") {
+        return mentor.price >= 31 && mentor.price <= 40;
+      } else if (price == "5") {
+        return mentor.price >= 41 && mentor.price <= 50;
+      }
+    });
+    setFilteredMentorList(filteredMentorsByPrice);
   }, [price]);
 
   return (
@@ -80,11 +115,11 @@ const FindMentors = () => {
               }}
             >
               <option value="choose">Choose Rating Range</option>
-              <option value="4-5">4.1 - 5</option>
-              <option value="3-4">3.1 - 4</option>
-              <option value="2-3">2.1 - 3</option>
-              <option value="1-2">1.1 - 2</option>
-              <option value="1-2">0.1 - 1</option>
+              <option value="1">4.1 - 5</option>
+              <option value="2">3.1 - 4</option>
+              <option value="3">2.1 - 3</option>
+              <option value="4">1.1 - 2</option>
+              <option value="5">0.1 - 1</option>
             </select>
           </div>
           <div className="find_mentors--filter_option">
@@ -97,29 +132,48 @@ const FindMentors = () => {
               }}
             >
               <option value="choose">Choose Price Range</option>
-              <option value="1-10">$1 - $10</option>
-              <option value="11-20">$11 - $20</option>
-              <option value="21-30">$21 - $30</option>
-              <option value="31-40">$31 - $40</option>
-              <option value="41-50">$41 - $50</option>
+              <option value="1">$1 - $10</option>
+              <option value="2">$11 - $20</option>
+              <option value="3">$21 - $30</option>
+              <option value="4">$31 - $40</option>
+              <option value="5">$41 - $50</option>
             </select>
           </div>
         </div>
       </aside>
 
       <div className="find_mentors--mentor_list">
-        {mentorList.map((mentor) => (
-          <MentorCard
-            name={mentor.name}
-            country={mentor.country}
-            school={mentor.school}
-            skills={mentor.skills}
-            gpa={mentor.gpa}
-            rating={mentor.rating}
-            price={mentor.price}
-            img={mentor.img}
-          />
-        ))}
+        {filteredMentorList.length != 0 ? (
+          <>
+            {filteredMentorList.map((mentor) => (
+              <MentorCard
+                name={mentor.name}
+                country={mentor.country}
+                school={mentor.school}
+                skills={mentor.skills}
+                gpa={mentor.gpa}
+                rating={mentor.rating}
+                price={mentor.price}
+                img={mentor.img}
+              />
+            ))}
+          </>
+        ) : (
+          <>
+            {mentorList.map((mentor) => (
+              <MentorCard
+                name={mentor.name}
+                country={mentor.country}
+                school={mentor.school}
+                skills={mentor.skills}
+                gpa={mentor.gpa}
+                rating={mentor.rating}
+                price={mentor.price}
+                img={mentor.img}
+              />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
