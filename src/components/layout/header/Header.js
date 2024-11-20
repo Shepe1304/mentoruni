@@ -28,13 +28,17 @@ const Header = () => {
           alt="Logo, a smiling globe with university hat and bull horns, and the text 'MentorUni' around it."
         />
       </div>
-      <div
-        className="header--find_mentor dark-shadow"
-        onClick={HandleFindMentorsClick}
-      >
-        Find Mentor
-      </div>
-      {!(location.pathname == "/login") ? (
+      {!(location.pathname == "/find-mentors") ? (
+        <div
+          className="header--find_mentor dark-shadow"
+          onClick={HandleFindMentorsClick}
+        >
+          Find Mentor
+        </div>
+      ) : null}
+      {!(
+        location.pathname == "/login" || location.pathname == "/find-mentors"
+      ) ? (
         <>
           <div className="header--options dark-shadow">
             <div className="header--option" onClick={HandleHomeClick}>
