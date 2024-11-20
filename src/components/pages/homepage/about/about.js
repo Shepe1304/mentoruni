@@ -54,8 +54,9 @@ function About() {
           <div className="about--item_content">
             <h3>Mission</h3>
             <p>
-              We solve this by directly connecting students with experienced
-              peer mentors through an affordable, streamlined platform.{" "}
+              Providing personalized and affordable support on different
+              specific aspects of college application that elevate the education
+              of our students.{" "}
             </p>
           </div>
         </div>
