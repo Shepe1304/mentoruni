@@ -10,23 +10,57 @@ const FindMentors = () => {
   const [rating, setRating] = useState("");
   const [price, setPrice] = useState("");
   const [filteredMentorList, setFilteredMentorList] = useState([]);
+  const [searchInputValue, setSearchInputValue] = useState("");
+
+  const HandleMentorSearch = (e) => {
+    e.preventDefault();
+    const words = searchInputValue.trim().toLowerCase().split(" ");
+    const filteredMentorsBySearchInput = mentorList.filter((mentor) => {
+      let include = false;
+      words.map((word) => {
+        if (
+          mentor.name.toLowerCase().includes(word) ||
+          mentor.skills.toLowerCase().includes(word)
+        ) {
+          include = true;
+          return;
+        }
+      });
+      return include;
+    });
+    setFilteredMentorList(filteredMentorsBySearchInput);
+  };
 
   useEffect(() => {
     setFilteredMentorList(mentorList);
   }, []);
 
   useEffect(() => {
+    const filteredMentorsByCountry = mentorList.filter((mentor) => {
+      return mentor.country == country;
+    });
+    setFilteredMentorList(filteredMentorsByCountry);
+  }, [country]);
+
+  useEffect(() => {
+    const filteredMentorsBySchool = mentorList.filter((mentor) => {
+      return mentor.school == school;
+    });
+    setFilteredMentorList(filteredMentorsBySchool);
+  }, [school]);
+
+  useEffect(() => {
     const filteredMentorsByRating = mentorList.filter((mentor) => {
       if (rating == "1") {
-        return mentor.rating >= 1 && mentor.rating <= 10;
+        return mentor.rating >= 4.1 && mentor.rating <= 5;
       } else if (rating == "2") {
-        return mentor.rating >= 11 && mentor.rating <= 20;
+        return mentor.rating >= 3.1 && mentor.rating <= 4;
       } else if (rating == "3") {
-        return mentor.rating >= 21 && mentor.rating <= 30;
+        return mentor.rating >= 2.1 && mentor.rating <= 3;
       } else if (rating == "4") {
-        return mentor.rating >= 31 && mentor.rating <= 40;
+        return mentor.rating >= 1.1 && mentor.rating <= 2;
       } else if (rating == "5") {
-        return mentor.rating >= 41 && mentor.rating <= 50;
+        return mentor.rating >= 0.1 && mentor.rating <= 1;
       }
     });
     setFilteredMentorList(filteredMentorsByRating);
@@ -61,7 +95,20 @@ const FindMentors = () => {
               className="find_mentors--filter_bar--searchbar_icon"
             />
           </div>
-          <input type="text" placeholder="Search..." />
+          <form
+            action=""
+            onSubmit={(e) => {
+              HandleMentorSearch(e);
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(e) => {
+                setSearchInputValue(e.target.value);
+              }}
+            />
+          </form>
         </div>
         <div className="find_mentors--filter_options">
           <div className="find_mentors--filter_option">
@@ -100,7 +147,7 @@ const FindMentors = () => {
               </option>
               <option value="Harvard University">Harvard University</option>
               <option value="Duke University">Duke University</option>
-              <option value="Duke University">
+              <option value="University of Saint Thomas">
                 University of Saint Thomas
               </option>
             </select>
