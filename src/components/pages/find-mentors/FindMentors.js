@@ -11,6 +11,11 @@ const FindMentors = () => {
   const [price, setPrice] = useState("");
   const [filteredMentorList, setFilteredMentorList] = useState([]);
   const [searchInputValue, setSearchInputValue] = useState("");
+  const [mentorSearched, setMentorSearched] = useState(false);
+
+  useEffect(() => {
+    setFilteredMentorList(mentorList);
+  }, []);
 
   const HandleMentorSearch = (e) => {
     e.preventDefault();
@@ -29,59 +34,82 @@ const FindMentors = () => {
       return include;
     });
     setFilteredMentorList(filteredMentorsBySearchInput);
+    setMentorSearched(true);
   };
 
   useEffect(() => {
-    setFilteredMentorList(mentorList);
-  }, []);
+    if (mentorSearched && searchInputValue === "") {
+      setMentorSearched(false);
+    }
+  }, [searchInputValue]);
 
   useEffect(() => {
-    const filteredMentorsByCountry = mentorList.filter((mentor) => {
-      return mentor.country == country;
+    const result = mentorList.filter((mentor) => {
+      return (
+        mentor.country == country ||
+        mentor.school == school ||
+        (rating == "1" && mentor.rating >= 4.1 && mentor.rating <= 5) ||
+        (rating == "2" && mentor.rating >= 3.1 && mentor.rating <= 4) ||
+        (rating == "3" && mentor.rating >= 2.1 && mentor.rating <= 3) ||
+        (rating == "4" && mentor.rating >= 1.1 && mentor.rating <= 2) ||
+        (rating == "5" && mentor.rating >= 0.1 && mentor.rating <= 1) ||
+        (price == "1" && mentor.price >= 1 && mentor.price <= 10) ||
+        (price == "2" && mentor.price >= 11 && mentor.price <= 20) ||
+        (price == "3" && mentor.price >= 21 && mentor.price <= 30) ||
+        (price == "4" && mentor.price >= 31 && mentor.price <= 40) ||
+        (price == "5" && mentor.price >= 41 && mentor.price <= 50)
+      );
     });
-    setFilteredMentorList(filteredMentorsByCountry);
-  }, [country]);
+    setFilteredMentorList(result);
+  }, [country, school, rating, price]);
 
-  useEffect(() => {
-    const filteredMentorsBySchool = mentorList.filter((mentor) => {
-      return mentor.school == school;
-    });
-    setFilteredMentorList(filteredMentorsBySchool);
-  }, [school]);
+  // useEffect(() => {
+  //   const filteredMentorsByCountry = mentorList.filter((mentor) => {
+  //     return mentor.country == country;
+  //   });
+  //   setFilteredMentorList(filteredMentorsByCountry);
+  // }, [country]);
 
-  useEffect(() => {
-    const filteredMentorsByRating = mentorList.filter((mentor) => {
-      if (rating == "1") {
-        return mentor.rating >= 4.1 && mentor.rating <= 5;
-      } else if (rating == "2") {
-        return mentor.rating >= 3.1 && mentor.rating <= 4;
-      } else if (rating == "3") {
-        return mentor.rating >= 2.1 && mentor.rating <= 3;
-      } else if (rating == "4") {
-        return mentor.rating >= 1.1 && mentor.rating <= 2;
-      } else if (rating == "5") {
-        return mentor.rating >= 0.1 && mentor.rating <= 1;
-      }
-    });
-    setFilteredMentorList(filteredMentorsByRating);
-  }, [rating]);
+  // useEffect(() => {
+  //   const filteredMentorsBySchool = mentorList.filter((mentor) => {
+  //     return mentor.school == school;
+  //   });
+  //   setFilteredMentorList(filteredMentorsBySchool);
+  // }, [school]);
 
-  useEffect(() => {
-    const filteredMentorsByPrice = mentorList.filter((mentor) => {
-      if (price == "1") {
-        return mentor.price >= 1 && mentor.price <= 10;
-      } else if (price == "2") {
-        return mentor.price >= 11 && mentor.price <= 20;
-      } else if (price == "3") {
-        return mentor.price >= 21 && mentor.price <= 30;
-      } else if (price == "4") {
-        return mentor.price >= 31 && mentor.price <= 40;
-      } else if (price == "5") {
-        return mentor.price >= 41 && mentor.price <= 50;
-      }
-    });
-    setFilteredMentorList(filteredMentorsByPrice);
-  }, [price]);
+  // useEffect(() => {
+  //   const filteredMentorsByRating = mentorList.filter((mentor) => {
+  //     if (rating == "1") {
+  //       return mentor.rating >= 4.1 && mentor.rating <= 5;
+  //     } else if (rating == "2") {
+  //       return mentor.rating >= 3.1 && mentor.rating <= 4;
+  //     } else if (rating == "3") {
+  //       return mentor.rating >= 2.1 && mentor.rating <= 3;
+  //     } else if (rating == "4") {
+  //       return mentor.rating >= 1.1 && mentor.rating <= 2;
+  //     } else if (rating == "5") {
+  //       return mentor.rating >= 0.1 && mentor.rating <= 1;
+  //     }
+  //   });
+  //   setFilteredMentorList(filteredMentorsByRating);
+  // }, [rating]);
+
+  // useEffect(() => {
+  //   const filteredMentorsByPrice = mentorList.filter((mentor) => {
+  //     if (price == "1") {
+  //       return mentor.price >= 1 && mentor.price <= 10;
+  //     } else if (price == "2") {
+  //       return mentor.price >= 11 && mentor.price <= 20;
+  //     } else if (price == "3") {
+  //       return mentor.price >= 21 && mentor.price <= 30;
+  //     } else if (price == "4") {
+  //       return mentor.price >= 31 && mentor.price <= 40;
+  //     } else if (price == "5") {
+  //       return mentor.price >= 41 && mentor.price <= 50;
+  //     }
+  //   });
+  //   setFilteredMentorList(filteredMentorsByPrice);
+  // }, [price]);
 
   return (
     <div className="find_mentors">
@@ -189,38 +217,50 @@ const FindMentors = () => {
         </div>
       </aside>
 
-      <div className="find_mentors--mentor_list">
-        {filteredMentorList.length != 0 ? (
-          <>
-            {filteredMentorList.map((mentor) => (
-              <MentorCard
-                name={mentor.name}
-                country={mentor.country}
-                school={mentor.school}
-                skills={mentor.skills}
-                gpa={mentor.gpa}
-                rating={mentor.rating}
-                price={mentor.price}
-                img={mentor.img}
-              />
-            ))}
-          </>
-        ) : (
-          <>
-            {mentorList.map((mentor) => (
-              <MentorCard
-                name={mentor.name}
-                country={mentor.country}
-                school={mentor.school}
-                skills={mentor.skills}
-                gpa={mentor.gpa}
-                rating={mentor.rating}
-                price={mentor.price}
-                img={mentor.img}
-              />
-            ))}
-          </>
-        )}
+      <div className="find_mentors--mentor_list_wrapper">
+        {mentorSearched &&
+        filteredMentorList.length == 0 &&
+        searchInputValue !== "" ? (
+          <div className="find_mentors--mentor_list_no_result">
+            <div>We could not find a mentor that matches your search.</div>
+            <div>Explore some mentors below?</div>
+          </div>
+        ) : null}
+        <div className="find_mentors--mentor_list">
+          {filteredMentorList.length != 0 ? (
+            <>
+              {filteredMentorList.map((mentor) => (
+                <MentorCard
+                  name={mentor.name}
+                  country={mentor.country}
+                  school={mentor.school}
+                  skills={mentor.skills}
+                  gpa={mentor.gpa}
+                  rating={mentor.rating}
+                  price={mentor.price}
+                  img={mentor.img}
+                  searchInputValue={mentorSearched ? searchInputValue : ""}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              {mentorList.map((mentor) => (
+                <MentorCard
+                  name={mentor.name}
+                  country={mentor.country}
+                  school={mentor.school}
+                  skills={mentor.skills}
+                  gpa={mentor.gpa}
+                  rating={mentor.rating}
+                  price={mentor.price}
+                  img={mentor.img}
+                  searchInputValue={mentorSearched ? searchInputValue : ""}
+                />
+              ))}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
