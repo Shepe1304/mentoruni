@@ -30,6 +30,9 @@ const Header = () => {
       </div>
       {!(location.pathname == "/find-mentors") ? (
         <div
+          // className={`header--find_mentor dark-shadow ${
+          //   location.pathname == "/find-mentors" ? "header--option_current" : ""
+          // }`}
           className="header--find_mentor dark-shadow"
           onClick={HandleFindMentorsClick}
         >
@@ -41,7 +44,13 @@ const Header = () => {
       ) ? (
         <>
           <div className="header--options dark-shadow">
-            <div className="header--option" onClick={HandleHomeClick}>
+            <div
+              // className={`header--option ${
+              //   location.pathname == "/" ? "header--option_current" : ""
+              // }`}
+              className="header--option"
+              onClick={HandleHomeClick}
+            >
               Home
             </div>
             <a href="#about" className="header--option">
