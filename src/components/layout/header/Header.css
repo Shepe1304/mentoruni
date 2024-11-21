@@ -75,6 +75,12 @@
   text-transform: uppercase;
 }
 
+.header--option_current {
+  background-color: black;
+  color: white;
+  pointer-events: none;
+}
+
 @media (max-width: 850px) {
   .header {
     height: auto;
