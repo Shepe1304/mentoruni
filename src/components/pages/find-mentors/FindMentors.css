@@ -1,6 +1,7 @@
 .find_mentors {
   display: flex;
   font-family: "Jaldi", sans-serif;
+  padding: 1em 0;
 }
 
 .find_mentors--filter_bar {
@@ -62,14 +63,33 @@
   margin-bottom: 0.25em;
 }
 
-.find_mentors--mentor_list {
+.find_mentors--mentor_list_wrapper {
   width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.find_mentors--mentor_list {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-row-gap: 2.5em;
 }
 
+.find_mentors--mentor_list_no_result {
+  font-size: 1.15rem;
+  margin: 1em;
+  text-align: center;
+  font-weight: bold;
+}
+
 @media (max-width: 1200px) {
+  .find_mentors {
+    padding: 0;
+  }
+
   .find_mentors--mentor_list {
     grid-template-columns: 1fr 1fr;
   }
@@ -81,7 +101,7 @@
   }
 
   .find_mentors--filter_bar,
-  .find_mentors--mentor_list {
+  .find_mentors--mentor_list_wrapper {
     width: 100%;
   }
 }

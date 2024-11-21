@@ -3,6 +3,9 @@ import "./MentorCard.css";
 import star from "../../assets/img/star.png";
 
 const MentorCard = (props) => {
+  console.log(props.searchInputValue.trim().toLowerCase().split(" "));
+  console.log(props.skills.trim().toLowerCase().split(" "));
+
   return (
     <div className="mentor_card">
       <div className="mentor_card--profile_picture">
@@ -11,7 +14,50 @@ const MentorCard = (props) => {
       <div className="mentor_card--info">
         <div className="mentor_card--info_first_line">
           <div className="mentor_card--info_item" id="mentor_card--info_name">
-            {props.name}
+            {/* {props.name} */}
+            {props.name
+              .trim()
+              .split(" ")
+              .map((name_word, id) => {
+                let punctuationFirst = "",
+                  punctuationLast = "";
+                while (!/^[a-zA-Z]$/.test(name_word[0])) {
+                  punctuationFirst = name_word[0];
+                  name_word = name_word.substring(1);
+                }
+                while (!/^[a-zA-Z]$/.test(name_word[name_word.length - 1])) {
+                  punctuationLast = name_word[name_word.length - 1];
+                  name_word = name_word.substring(0, name_word.length - 1);
+                }
+                if (
+                  !props.searchInputValue
+                    .trim()
+                    .toLowerCase()
+                    .split(" ")
+                    .includes(name_word.toLowerCase())
+                ) {
+                  return (
+                    <span>
+                      {punctuationFirst + name_word + punctuationLast}{" "}
+                    </span>
+                  );
+                } else {
+                  return (
+                    <span>
+                      {punctuationFirst}
+                      <span
+                        style={{
+                          backgroundColor: "rgb(247, 202, 94)",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {name_word}
+                      </span>
+                      {punctuationLast}{" "}
+                    </span>
+                  );
+                }
+              })}
           </div>
           <div className="mentor_card--info_first_line_seperator">|</div>
           <div
@@ -25,7 +71,50 @@ const MentorCard = (props) => {
           {props.school}
         </div>
         <div className="mentor_card--info_item" id="mentor_card--info_skills">
-          Skills: {props.skills}
+          {/* {props.skills} */}
+          {props.skills
+            .trim()
+            .split(" ")
+            .map((skill_word, id) => {
+              let punctuationFirst = "",
+                punctuationLast = "";
+              while (!/^[a-zA-Z]$/.test(skill_word[0])) {
+                punctuationFirst = skill_word[0];
+                skill_word = skill_word.substring(1);
+              }
+              while (!/^[a-zA-Z]$/.test(skill_word[skill_word.length - 1])) {
+                punctuationLast = skill_word[skill_word.length - 1];
+                skill_word = skill_word.substring(0, skill_word.length - 1);
+              }
+              if (
+                !props.searchInputValue
+                  .trim()
+                  .toLowerCase()
+                  .split(" ")
+                  .includes(skill_word.toLowerCase())
+              ) {
+                return (
+                  <span>
+                    {punctuationFirst + skill_word + punctuationLast}{" "}
+                  </span>
+                );
+              } else {
+                return (
+                  <span>
+                    {punctuationFirst}
+                    <span
+                      style={{
+                        backgroundColor: "rgb(247, 202, 94)",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {skill_word}
+                    </span>
+                    {punctuationLast}{" "}
+                  </span>
+                );
+              }
+            })}
         </div>
         <div className="mentor_card--info_last_line">
           <div className="mentor_card--info_gpa_and_rating">
